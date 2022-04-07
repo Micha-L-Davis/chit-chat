@@ -1,0 +1,17 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "A safe space to chit and chat with other users in public rooms.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chance": "^1.1.8",
+    "jest": "^27.5.1",
+    "socket.io-client": "^4.4.1"
+  }
+}
