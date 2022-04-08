@@ -1,8 +1,11 @@
-'use strict';
+const app = require('express')();
+const http = require('http').Server(app);
+const server = require('socket.io')(http);
+const port = process.env.PORT || 3000;
 
-const { Server } = require ('socket.io');
-const PORT = process.env.PORT || 3000;
-const server = new Server(PORT);
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
 
 server.on('connection', socket => {
   console.log('Socket connected' + socket.id);
@@ -20,4 +23,8 @@ server.on('connection', socket => {
   socket.onAny((event, payload) => {
     console.log(event, payload);
   });
+});
+
+http.listen(port, () => {
+  console.log(`Socket.IO server running at http://localhost:${port}/`);
 });
