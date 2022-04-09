@@ -133,7 +133,10 @@
         e.preventDefault();
         userID = document.getElementById("userID").value;
         roomID = document.getElementById("roomID").value;
-        location.href = `http://localhost:3000?userID=${userID}&roomID=${roomID}`;
+        
+        // location.href = `http://localhost:3000?userID=${userID}&roomID=${roomID}`; DEVELOPMENT
+        //PRODUCTION
+        location.href = `https://lab14cashmoneychitchat.herokuapp.com?userID=${userID}&roomID=${roomID}`; 
     }
 
     for (let entry of entries) {
