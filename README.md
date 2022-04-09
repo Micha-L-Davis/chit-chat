@@ -1,7 +1,7 @@
 # chit-chat-rooms
 An event driven instant messaging system designed to facilitate messages between multiple users in multiple rooms from a single entry point.
 
-Deployed Site: <Not Yet> 
+Deployed Site: https://lab14cashmoneychitchat.herokuapp.com/
 
 Latest Pull Request: https://github.com/the-dragon-group/chit-chat-rooms/pull/2
 
