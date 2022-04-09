@@ -22,10 +22,10 @@ http://localhost:3000?userID=<YOUR-USERNAME>&roomID=<ROOM-NAME>
     
 Rooms and users are created as-needed.  There are no permanent rooms or users.
 
-## Author
+## Authors
 
-Beau Hibbert
-Micha Davis
-Tanner Percival
-Tiara Brown
+* Beau Hibbert
+* Micha Davis
+* Tanner Percival
+* Tiara Brown
 
