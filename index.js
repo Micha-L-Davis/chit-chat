@@ -3,7 +3,6 @@ const http = require('http').Server(app);
 const server = require('socket.io')(http);
 const port = process.env.PORT || 3000;
 
-
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
@@ -20,10 +19,11 @@ server.on('connection', socket => {
     socket.join(roomID);
     socket.emit('join', roomID);
   });
+
   socket.on('send', payload => {
     //Format message, username, date, etc.
     let date = new Date();
-    let message = `(${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}) ${payload.userID}: ${payload.message}`;
+    let message = `ROOM: ${payload.roomID} - (${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}) ${payload.userID}: ${payload.message}`;
     payload.message = message;
     server.to(payload.roomID).emit('send', payload);
   });
