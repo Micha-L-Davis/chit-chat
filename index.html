@@ -69,16 +69,34 @@
   <script src="/socket.io/socket.io.js"></script>
 
   <script>
-    var socket = io();
+    let socket = io();
 
-    var messages = document.getElementById('messages');
-    var form = document.getElementById('form');
-    var input = document.getElementById('input');
+    let messages = document.getElementById('messages');
+    let form = document.getElementById('form');
+    let input = document.getElementById('input');
+
+    let params = new URLSearchParams(window.location.search)
+    let entries = Array.from(params.entries());
+    // http://localhost:3000?userID:Micha&roomID:Foosball
+    // [['userID', 'Micha'], ['roomID', 'Foosball']]
+    let userID;
+    let roomID;
+    for (let entry of entries) {
+      if (entry.includes('userID')) {
+        userID = entry[1];
+      } else if (entry.includes('roomID')) {
+        roomID = entry[1];
+      } else {
+        console.error('Invalid username or room id');
+      }
+    }
+
+    socket.emit('join', roomID);
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (input.value) {
-        socket.emit('send', { userID: 'userrrrrr', roomID: '1234', message: input.value });
+        socket.emit('send', { userID: userID, roomID: roomID, message: input.value });
         input.value = '';
       }
     });
@@ -86,6 +104,14 @@
     socket.on('send', function (payload) {
       var item = document.createElement('li');
       item.textContent = payload.message;
+      messages.appendChild(item);
+      window.scrollTo(0, document.body.scrollHeight);
+    });
+
+    socket.on('join', (payload) => {
+      console.log('joined ', roomID);
+      var item = document.createElement('li');
+      item.textContent = 'Joined room ' + roomID;
       messages.appendChild(item);
       window.scrollTo(0, document.body.scrollHeight);
     });
