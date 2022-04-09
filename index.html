@@ -49,8 +49,11 @@
 
     #messages {
       list-style-type: none;
-      margin: 0;
+      margin: auto;
       padding: 0;
+      max-width: 960px;
+      align-items: center;
+      justify-content:center;
     }
 
     #messages>li {
@@ -83,38 +86,56 @@
       Chit Chat
     </h1>
   </header>
+
+<!-- captures user data -->
+
+<form id="userForm">
   <div class="text-center userForm">
-    <div class="mb-3  p-2 input">
+    <div class="mb-3 p-2 input">
       <label for="userID" class="form-label">Username: </label>
-      <input type="text" class="form-control" id="userIDInput" placeholder="bob">
+      <input type="text" class="form-control" id="userID" placeholder="bob">
     </div>
     <div class="mb-3 p-2 input">
       <label for="roomID" class="form-label">Room Name: </label>
-      <input type="roomID" class="form-control" id="roomIDInput" placeholder="HackerGroup">
+      <input type="roomID" class="form-control" id="roomID" placeholder="HackerGroup">
     </div>
     <div class="p-2">
-      <button type="submit" class="btn btn-primary mt-3">Confirm identity</button>
+      <button id="userFormButton" type="submit" class="btn btn-primary mt-3">Confirm identity</button>
     </div>
   </div>
+</form>
+
+  <!-- captures message to be sent  -->
   <ul id="messages"></ul>
   <form id="form" action="">
     <input id="input" autocomplete="off" /><button>Send</button>
   </form>
-  <script src="/socket.io/socket.io.js"></script>
 
+
+  <script src="/socket.io/socket.io.js"></script>
   <script>
     let socket = io();
 
     let messages = document.getElementById('messages');
     let form = document.getElementById('form');
+    let userForm = document.getElementById('userForm');
     let input = document.getElementById('input');
 
+    
     let params = new URLSearchParams(window.location.search)
     let entries = Array.from(params.entries());
-    // http://localhost:3000?userID:Micha&roomID:Foosball
+    // http://localhost:3000?userID=Micha&roomID=Foosball
     // [['userID', 'Micha'], ['roomID', 'Foosball']]
-    let userID;
     let roomID;
+    let userID;
+
+    document.getElementById("userFormButton").onclick = function (e) {
+        e.preventDefault();
+        userID = document.getElementById("userID").value;
+        roomID = document.getElementById("roomID").value;
+        location.href = `http://localhost:3000?userID=${userID}&roomID=${roomID}`;
+    }
+
     for (let entry of entries) {
       if (entry.includes('userID')) {
         userID = entry[1];
