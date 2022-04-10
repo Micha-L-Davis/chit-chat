@@ -14,16 +14,22 @@ server.on('connection', socket => {
     console.log(event, payload);
   });
 
-  socket.on('join', roomID => {
-    console.log(roomID);
-    socket.join(roomID);
-    socket.emit('join', roomID);
+  socket.on('join', payload => {
+    console.log(payload.roomID);
+    socket.join(payload.roomID);
+    socket.emit('join', payload.roomID);
+    payload.message = `${payload.userID} has joined the room`;
+    socket.broadcast.to(payload.roomID).emit('send', payload);
+  });
+
+  socket.on('leaving', payload => {
+    payload.message = `${payload.userID} has left the room`;
+    socket.broadcast.to(payload.roomID).emit('send', payload);
   });
 
   socket.on('send', payload => {
-    //Format message, username, date, etc.
     let date = new Date();
-    let message = `ROOM: ${payload.roomID} - (${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}) ${payload.userID}: ${payload.message}`;
+    let message = `(${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}) ${payload.roomID} >  ${payload.userID}: ${payload.message}`;
     payload.message = message;
     server.to(payload.roomID).emit('send', payload);
   });
@@ -31,5 +37,5 @@ server.on('connection', socket => {
 });
 
 http.listen(port, () => {
-  console.log(`Socket.IO server running at http://localhost:${port}/`);
+  console.log(`Socket.IO server running on ${port}`);
 });
