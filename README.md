@@ -4,6 +4,7 @@ An event driven instant messaging system designed to facilitate messages between
 ## GUI deploy and CLI deploy
 
 Deployed Site: http://chitchat-env.eba-fkdwkgtp.us-west-2.elasticbeanstalk.com/
+
 Mirror Site: http://chit-chat.eba-fkdwkgtp.us-west-2.elasticbeanstalk.com/
 
 Latest Pull Request: https://github.com/the-dragon-group/chit-chat-rooms/pull/2
