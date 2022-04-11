@@ -34,11 +34,11 @@ server.on('connection', socket => {
     server.to(payload.roomID).emit('send', payload);
   });
 
-  socket.on('leaving', ()=> {
-    payload.message = `${payload.userID} has left the room`;
-    socket.broadcast.to(payload.roomID).emit('send', payload);
-    delete payload.roomID.userID
-  })
+//   socket.on('leaving', ()=> {
+//     payload.message = `${payload.userID} has left the room`;
+//     socket.broadcast.to(payload.roomID).emit('send', payload);
+//     delete payload.roomID.userID
+//   })
 
 });
 
