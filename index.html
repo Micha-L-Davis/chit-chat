@@ -121,11 +121,11 @@
       <div class="text-center userForm">
         <div class="mb-3 p-2 input">
           <label for="userID" class="form-label">Username: </label>
-          <input type="text" class="form-control" id="userID" placeholder="username" required>
+          <input type="text" class="form-control" id="userID" autocomplete="off" placeholder="username" required>
         </div>
         <div class="mb-3 p-2 input">
           <label for="roomID" class="form-label">Room Name: </label>
-          <input type="roomID" class="form-control" id="roomID" placeholder="room name" required>
+          <input type="roomID" class="form-control" id="roomID" autocomplete="off"  placeholder="room name" required>
         </div>
         <div class="p-2">
           <button id="userFormButton" type="submit" class="btn btn-dark mt-3">Join Room</button>
@@ -177,6 +177,7 @@
     }
 
     socket.emit('join', { userID: userID, roomID: roomID });
+    socket.emit('leaving', { userID: userID, roomID: roomID });
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
