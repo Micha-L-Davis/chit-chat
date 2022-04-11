@@ -22,10 +22,10 @@ server.on('connection', socket => {
     socket.broadcast.to(payload.roomID).emit('send', payload);
   });
 
-  socket.on('leaving', payload => {
-    payload.message = `${payload.userID} has left the room`;
-    socket.broadcast.to(payload.roomID).emit('send', payload);
-  });
+//   socket.on('leaving', payload => {
+//     payload.message = `${payload.userID} has left the room`;
+//     socket.broadcast.to(payload.roomID).emit('send', payload);
+//   });
 
   socket.on('send', payload => {
     let date = new Date();
@@ -34,7 +34,15 @@ server.on('connection', socket => {
     server.to(payload.roomID).emit('send', payload);
   });
 
+  socket.on('leaving', ()=> {
+    payload.message = `${payload.userID} has left the room`;
+    socket.broadcast.to(payload.roomID).emit('send', payload);
+    delete payload.roomID.userID
+  })
+
 });
+
+
 
 http.listen(port, () => {
   console.log(`Socket.IO server running on ${port}`);
