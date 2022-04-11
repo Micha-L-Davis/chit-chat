@@ -1,8 +1,12 @@
 # chit-chat-rooms
 An event driven instant messaging system designed to facilitate messages between multiple users in multiple rooms from a single entry point.
 
+## GUI deploy and CLI deploy
+
 AWS Site: http://chitchatrooms-env.eba-fhzpmdrj.us-east-2.elasticbeanstalk.com/ || 
 http://chit-chat-rooms-cli-env.eba-hnmfwadp.us-east-2.elasticbeanstalk.com/
+
+Tiara & Tanner stepped through the AWS, created a user and an environment to deploy this web application via EC2 virtual server and Elastic Beanstalk web app management. 
 
 
 Deployed Site: https://lab14cashmoneychitchat.herokuapp.com/
