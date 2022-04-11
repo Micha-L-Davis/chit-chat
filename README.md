@@ -1,6 +1,10 @@
 # chit-chat-rooms
 An event driven instant messaging system designed to facilitate messages between multiple users in multiple rooms from a single entry point.
 
+AWS Site: http://chitchatrooms-env.eba-fhzpmdrj.us-east-2.elasticbeanstalk.com/ || 
+http://chit-chat-rooms-cli-env.eba-hnmfwadp.us-east-2.elasticbeanstalk.com/
+
+
 Deployed Site: https://lab14cashmoneychitchat.herokuapp.com/
 
 Latest Pull Request: https://github.com/the-dragon-group/chit-chat-rooms/pull/2
